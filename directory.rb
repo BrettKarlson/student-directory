@@ -1,16 +1,16 @@
 # Let's put all the students into an array
 students = [
-  "Dr. Hannibal Lecter",
-  "Darth Vader",
-  "Nurse Ratched",
-  "Michael Corleone",
-  "Alex DeLarge",
-  "The Wicked Witch of the West",
-  "Terminator",
-  "Freddy Krueger",
-  "The Joker",
-  "Joffrey Baratheon",
-  "Norman Bates",
+  {name: "Dr. Hannibal Lecter", cohort: :june},
+  {name: "Darth Vader", cohort: :june},
+  {name: "Nurse Ratched", cohort: :june},
+  {name: "Michael Corleone", cohort: :june},
+  {name: "Alex DeLarge", cohort: :june},
+  {name: "The Wicked Witch of the West", cohort: :june},
+  {name: "Terminator", cohort: :june},
+  {name: "Freddy Krueger", cohort: :june},
+  {name: "The Joker", cohort: :june},
+  {name: "Joffrey Baratheon", cohort: :june},
+  {name: "Norman Bates", cohort: :june},
 ]
 # method to print header. Not really useful
 def print_header
@@ -18,9 +18,9 @@ def print_header
   puts "-------------"
 end
 # method to iterate over the array and puts each item
-def print(names)
-  names.each do |name|
-  puts name
+def print(students)
+  students.each do |student|
+  puts "#{student[:name]} (#{student[:cohort]} cohort)"
   end
 end
 # finally, method to print the total
