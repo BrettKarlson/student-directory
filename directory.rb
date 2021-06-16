@@ -34,10 +34,34 @@ end
 def print_footer(names)
   puts "Overall, we have #{names.count} great students"
 end
+
+def interactive_menu
+  loop do
+    students = []
+    # 1. Print the menu and ask the user what to do
+    puts "1. Input the students"
+    puts "2. Show the students"
+    puts "9. Exit"
+    # 2. read the input and save it into a variable
+    selection = gets.chomp
+    # 3. do what the user has asked
+    case selection
+    when "1"
+      # input the students
+      students = input_students
+    when "2"
+      # show the students
+      print_header
+      print_names(students)
+      print_footer(students)
+    when "9"
+      exit # this will cause the program to terminate
+    else
+      puts "I'm sorry, I don't know what you meant. Please try again"
+    end
+  end
+end
 # nothing happens until we call the methods
 # must remember to save the output from 'input_students' to 'students'
 # because the first 'students' is a local variable in the method
-students = input_students
-print_header
-print_names(students)
-print_footer(students)
+interactive_menu
