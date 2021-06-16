@@ -1,4 +1,4 @@
-# modified to print names less than 12 characters
+# replacing each() with a while loop
 def input_students
   puts "Please enter the names of the students:"
   puts "To finish, just hit return twice."
@@ -16,20 +16,20 @@ def print_header
   puts "The students of Villains Academy"
   puts "-------------"
 end
-# method print now takes a second argument 'letter', given when method called.
+# replace each() with a while loop. No iteration method, so a count is required.
 def print(students)
-  students.each do |student|
-    if student[:name].length < 12
-      puts "This student's name has less than 12 characters: #{student[:name]} (#{student[:cohort]} cohort)"
-    end
+  count = 0
+  while count < students.count do
+      puts "#{students[count][:name]} (#{students[count][:cohort]} cohort)"
+      count += 1
   end
 end
 
 def print_footer(names)
-  puts "Overall, we have #{names.count} great students"
+  puts "Overall, we have #{names.length} great students"
 end
 
 students = input_students
 print_header
 print(students)
-# print_footer(students)
+print_footer(students)
