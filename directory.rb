@@ -24,7 +24,8 @@ def print_header
   puts "-------------"
 end
 # method to iterate over the array and puts each item
-def print(students)
+# change name from 'print' to 'print_names" (Ruby keyword)
+def print_names(students)
   students.each do |student|
   puts "#{student[:name]} (#{student[:cohort]} cohort)"
   end
@@ -38,5 +39,5 @@ end
 # because the first 'students' is a local variable in the method
 students = input_students
 print_header
-print(students)
+print_names(students)
 print_footer(students)
