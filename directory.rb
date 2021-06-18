@@ -7,11 +7,8 @@ def input_students
   name = STDIN.gets.chomp
   puts "And your cohort?"
   cohort = STDIN.gets.chomp
-  # until the name is empty, repeat this code. 'while' and ! replaced with 'until'
   until name.empty? do
-    # add the student hash to the array
     save_students(name, cohort)
-    #@students << {name: name, cohort: cohort}
     puts "Now we have #{@students.count} students"
     # get another name from the user
     name = gets.chomp
@@ -22,35 +19,34 @@ end
 
 def save_students(name, cohort)
   @students << {name: name, cohort: cohort.to_sym}
-   # puts "We have #{@students.count} students"
 end
 
 def students_to_file
   # open the file for writing
   puts "Please enter a name for the file:"
   file_name = gets.chomp
-  file = File.open(file_name, "w")
+  file = File.open(file_name, "w") do |file|
   # iterate over the array of students
-  @students.each do |student|
+    @students.each do |student|
     student_data = [student[:name], student[:cohort]]
     csv_line = student_data.join(",")
     file.puts csv_line
+    end
   end
   puts "We saved #{@students.count} students to file"
-  file.close
 end
 
 def load_students(filename = ".gitignore/students.csv")
   puts "File name?" #students.csv is default
   filename = gets.chomp 
-  file = File.open(filename, "r")
+  file = File.open(filename, "r") do |file|
   file.readlines.each do |line|
     name, cohort = line.chomp.split(',')
      #@students << {name: name, cohort: cohort.to_sym}
     save_students(name, cohort)
+    end
   end
-  puts "We loaded #{@students.count} students."
-  file.close  
+  puts "We loaded #{@students.count} students." 
 end
 
 def try_load_students
