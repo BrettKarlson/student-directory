@@ -27,7 +27,9 @@ end
 
 def students_to_file
   # open the file for writing
-  file = File.open("students_new.csv", "w")
+  puts "Please enter a name for the file:"
+  file_name = gets.chomp
+  file = File.open(file_name, "w")
   # iterate over the array of students
   @students.each do |student|
     student_data = [student[:name], student[:cohort]]
@@ -39,6 +41,8 @@ def students_to_file
 end
 
 def load_students(filename = ".gitignore/students.csv")
+  puts "File name?" #students.csv is default
+  filename = gets.chomp 
   file = File.open(filename, "r")
   file.readlines.each do |line|
     name, cohort = line.chomp.split(',')
