@@ -5,34 +5,47 @@ def input_students
   puts "To finish, just hit return twice."
   # get the first name.
   name = STDIN.gets.chomp
+  puts "And your cohort?"
+  cohort = STDIN.gets.chomp
   # until the name is empty, repeat this code. 'while' and ! replaced with 'until'
   until name.empty? do
     # add the student hash to the array
-    @students << {name: name, cohort: :june}
+    save_students(name, cohort)
+    #@students << {name: name, cohort: cohort}
     puts "Now we have #{@students.count} students"
     # get another name from the user
     name = gets.chomp
+    puts "And your cohort? Or enter to stop"
+    cohort = STDIN.gets.chomp
   end
 end
 
-def save_students
+def save_students(name, cohort)
+  @students << {name: name, cohort: cohort.to_sym}
+   # puts "We have #{@students.count} students"
+end
+
+def students_to_file
   # open the file for writing
-  file = File.open("students.csv", "w")
+  file = File.open("students_new.csv", "w")
   # iterate over the array of students
   @students.each do |student|
     student_data = [student[:name], student[:cohort]]
     csv_line = student_data.join(",")
     file.puts csv_line
   end
+  puts "We saved #{@students.count} students to file"
   file.close
 end
 
-def load_students(filename = "students.csv")
+def load_students(filename = ".gitignore/students.csv")
   file = File.open(filename, "r")
   file.readlines.each do |line|
     name, cohort = line.chomp.split(',')
-    @students << {name: name, cohort: cohort.to_sym}
+     #@students << {name: name, cohort: cohort.to_sym}
+    save_students(name, cohort)
   end
+  puts "We loaded #{@students.count} students."
   file.close  
 end
 
@@ -66,8 +79,8 @@ end
 def print_menu
   puts "1. Input the students"
   puts "2. Show the students"
-  puts "3. Save the list to students.csv"
-  puts "4. Load the list from students.csv"
+  puts "3. Save the list to students_new.csv"
+  puts "4. Load the list from .gitignore/students.csv"
   puts "9. Exit"
 end
 
@@ -84,7 +97,7 @@ def process(selection)
   when "2"
     show_students
   when "3"
-    save_students
+    students_to_file
   when "4"
     load_students
   when "9"
