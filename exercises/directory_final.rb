@@ -14,14 +14,13 @@ def input_students
     puts "Please enter your cohort:"
     cohort = gets.chomp.downcase
     months = %w(january february march april may june july august september october november december)
-    if !months.include?(cohort)
-      puts "Make sure you type carefully, and enter the whole name of the month. ".center(99, ';-)')
-    elsif cohort == ""
+    if cohort == ""
       cohort = "Not entered"
       break
+    elsif !months.include?(cohort)
+      puts "Make sure you type carefully, and enter the whole name of the month. ".center(99, ';-)') 
     else
       cohort
-      break
     end
   end
 
@@ -99,6 +98,6 @@ end
 # because the first 'students' is a local variable in the method
 students = input_students
 print_header
-# print(students)
-print_groups(students)
+print(students)
+#print_groups(students)
 print_footer(students)

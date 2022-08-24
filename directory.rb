@@ -1,3 +1,5 @@
+require 'csv'
+
 @students = []
 # See step 10 of 'student directory' on Makers Mastery Precourse
 def input_students
